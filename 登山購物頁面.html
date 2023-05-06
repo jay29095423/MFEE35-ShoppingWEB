@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物網站頁面</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/59df8fb993.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital@1&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            box-sizing: border-box;
+            font-family: Noto Sans TC, Comic Neue;
+            list-style-type: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            /* position: relative; */
+        }
+
+        body {
+            background-color: #ccc;
+        }
+
+        header {
+            height: 13vh;
+            background-color: rgba(0, 0, 0, .9);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 5px 0;
+        }
+
+        header .header_item {
+            height: 40%;
+            /* border: 1px #fff solid; */
+            text-decoration: none;
+            color: #fff;
+
+            position: relative;
+            width: 10%;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            width: 7%;
+            padding-left: 1.2%;
+        }
+
+        header .header_item img {
+            height: 100%;
+
+        }
+
+        header .header_item:nth-child(3) {
+            height: 100%;
+            padding: 0;
+        }
+
+
+
+        /* 連結動畫設定 */
+        header a::before,
+        header a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            left: 0;
+        }
+
+
+        /* 設定底線 */
+        header a::before {
+            background-color: #ffffff;
+            height: 2px;
+            bottom: 0;
+            /* left: 20%; */
+            /* width: 80%; */
+            transform-origin: 100% 50%;
+            transform: scaleX(0);
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+
+        /* 設定文字 */
+        header a::after {
+            content: attr(data-replace);
+            height: 100%;
+            top: 2px;
+            /* left: 20%; */
+            transform-origin: 100% 50%;
+            transform: translate3d(200%, 0, 0);
+            transition: all .3s cubic-bezier(0.76, 0, 0.24, 1);
+            color: transparent;
+
+        }
+
+        header a:hover::before {
+            transform-origin: 0% 50%;
+            transform: scaleX(1);
+            color: #cecece;
+        }
+
+        header a:hover::after {
+            transform: translate3d(0, 0, 0);
+            color: #cecece;
+
+        }
+
+
+        header a span {
+            display: inline-block;
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+            transition: .3s;
+        }
+
+        header a:hover span {
+            transform: translate3d(-200%, 0, 0);
+            color: transparent;
+        }
+
+
+        /* 設定輪播圖片 */
+        .carousel {
+            width: 70%;
+            height: 60%;
+            background-color: transparent;
+            position: relative;
+            margin: 10vh auto 0 auto;
+            /* display: flex; */
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            -webkit-box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            -moz-box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+
+
+
+        }
+
+        .carousel .carousel_slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: transparent;
+            overflow: hidden;
+            scroll-behavior: smooth;
+        }
+
+
+        .carousel .carousel_btn {
+            position: absolute;
+            background-color: rgba(53, 249, 249, 0);
+            height: 100%;
+            width: 10%;
+            z-index: 1;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .carousel .carousel_btn span {
+            color: #a1a1a1;
+            font-size: 35px;
+
+
+        }
+
+        .carousel #carousel_btn_right {
+            right: 0;
+            justify-content: end;
+        }
+
+        .carousel #carousel_btn_left {
+            left: 0;
+            justify-content: start;
+            padding-left: 1%;
+        }
+
+        .carousel .carousel_btn:hover span {
+            color: #00000094;
+        }
+
+
+        .carousel .carousel_slider .carousel_img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            background-color: rgb(191, 94, 94);
+            /* position: absolute; */
+            /* border: 1px solid lightgreen; */
+            background-size: cover;
+            background-position: 5%;
+            text-decoration: none;
+            transition: .3s;
+
+
+        }
+
+
+        #carousel_img_1 {
+            background-image: url(登山裝備.jpg);
+            transform: translatex(-200%);
+        }
+
+        #carousel_img_2 {
+            background-image: url(露營.jpg);
+            background-position: 70% 82%;
+            transform: translatex(-200%);
+        }
+
+
+        #carousel_img_3 {
+            background-image: url(登山.jpg);
+            transform: translatex(-200%);
+        }
+
+        #carousel_img_4 {
+            background-image: url(登山鞋2.jpg);
+            background-position: bottom;
+            transform: translatex(-200%);
+        }
+
+        #carousel_img_5 {
+            background-image: url(登山包2.jpg);
+            transform: translatex(-200%);
+        }
+
+        .carousel_img .carousel_cover {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .1);
+            position: relative;
+            transition: .5s;
+        }
+
+        .carousel_img .carousel_content {
+            color: transparent;
+            position: absolute;
+            bottom: 0;
+            padding: 2% 2% 6% 2%;
+            transition: .5s;
+        }
+
+
+        .carousel_img:hover .carousel_cover {
+            background-color: rgba(0, 0, 0, .5);
+
+        }
+
+        .carousel_img:hover .carousel_cover .carousel_content {
+            color: #e5e5e5;
+            z-index: 1;
+        }
+
+        /* 連播圖下方的點 */
+
+        .carousel .carousel_dots {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            bottom: 5%;
+            /* border: 1px solid #000; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel .carousel_dots a {
+            height: 10px;
+            width: 10px;
+            margin: 0 2% 0;
+            border-radius: 500px;
+            background-color: rgba(116, 116, 116, 0.407);
+            /* transform: .8s; */
+            /* position: absolute; */
+            /* display: flex; */
+        }
+
+
+
+        .carousel .carousel_dots a:nth-child(3) {
+            background-color: rgba(50, 50, 50, 0.7);
+        }
+
+        /* 設定頁中圖片 */
+
+        .mid_container {
+            height: 1200px;
+            width: 70%;
+            /* border: solid 1px green; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 5vh auto 5vh auto;
+            perspective: 700;
+
+
+        }
+
+        .mid_container .mid_container_item {
+            /* border: 1px solid rgb(0, 0, 0); */
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin-top: 3.5%;
+            transform-style: preserve-3d;
+            /* transform: rotateX(180deg); */
+
+            transition: all .8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .mid_item_back .back_content {
+            width: 50%;
+            height: 100%;
+            /* background-color: blue; */
+            position: absolute;
+            right: 0;
+            /* padding: 2%;
+            margin-right: 2%; */
+            padding: 2%;
+        }
+
+        .mid_item_back .back_content .back_list {
+            width: 100%;
+            height: 100%;
+            /* background-color: orange; */
+            position: relative;
+            /* margin: 0 4%; */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mid_item_back .back_content .back_list .back_list_item {
+            /* display: block; */
+            width: 100%;
+            height: 100%;
+            /* background-color: #cc0a0a33; */
+            color: #383838;
+            text-decoration: none;
+            text-align: center;
+            line-height: 2.8;
+
+        }
+
+        .mid_container_item .mid_item_back,
+        .mid_container_item .mid_item_front {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+        }
+
+        .mid_item_front {
+            /* background-color: chartreuse; */
+            display: flex;
+            position: relative;
+        }
+
+        .mid_item_back {
+            background-color: #fff;
+            transform: rotateX(180deg);
+            display: flex;
+            position: relative;
+            /* padding: 1px; */
+        }
+
+        .mid_item_back .mid_item_back_img,
+        .mid_item_front .mid_item_img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .mid_item_front .mid_item_content {
+            width: 50%;
+            height: 100%;
+            /* background-color: #f08; */
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+            justify-content: center;
+            padding: 5%;
+            position: absolute;
+
+        }
+
+        .mid_item_front .mid_item_content h2 {
+            font-size: 20px;
+            color: #383838;
+        }
+
+        .mid_item_front .mid_item_content p {
+            font-size: 15px;
+            color: #444444;
+        }
+
+        .mid_item_back .mid_item_back_img img,
+        .mid_item_front .mid_item_img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+            filter: brightness(90%);
+        }
+
+        .mid_container_item:nth-child(odd) .mid_item_back .mid_item_back_img,
+        .mid_container_item:nth-child(odd) .mid_item_front .mid_item_img {
+            right: 0;
+        }
+
+        .mid_container_item:nth-child(odd) .mid_item_back .back_content {
+            left: 0;
+        }
+
+        .mid_container_item:nth-child(even) .mid_item_front .mid_item_content {
+            right: 0;
+        }
+
+        .mid_container_item:hover {
+            background-color: #fff;
+            /* transform: scale(1.1); */
+            z-index: 1;
+
+            position: relative;
+
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            -webkit-box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            -moz-box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+        }
+
+        /* 設定頁中圖片背後的連結動畫 */
+
+        .back_content .back_list .back_list_item:hover {
+            background-color: rgb(193, 193, 193);
+        }
+
+        /* 設定頁尾 */
+
+        .footer {
+            background-color: rgba(0, 0, 0, .9);
+            height: 50vh;
+            width: 100%;
+            position: absolute;
+            bottom: -50%;
+            display: flex;
+        }
+
+        .footer-item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* border: 1px solid red; */
+            padding: 2%;
+        }
+
+        .footer-item h4 {
+            color: #f5f0f0d6;
+            margin-bottom: 10%;
+            position: relative;
+            padding-left: 2%;
+
+        }
+
+        .footer-item h4::after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            background-color: #545454;
+            position: absolute;
+            bottom: -30%;
+            left: 2%;
+
+        }
+
+        .footer-item nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-item nav a {
+            text-decoration: none;
+            color: #ccc;
+            padding: 5% 0 5% 2%;
+            /* border: 1px solid green; */
+            height: 100%;
+            /* transition: .3s cubic-bezier(.17, .67, .83, .67);  */
+            /* box-shadow: -12px 12px 20px -12px rgba(0, 0, 0, 0.9); */
+
+        }
+
+        .footer-item nav a:hover {
+
+            background-color: #545454;
+            transition: .2s;
+            animation: shadow-drop-2-bl .2s;
+            animation-fill-mode: forwards;
+
+        }
+
+        .footer-item nav a:active {
+            animation: shadow-drop-1-bl .2s;
+        }
+
+        @keyframes shadow-drop-2-bl {
+            0% {
+
+                transform: translateZ(0) translateX(0) translateY(0);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+
+            100% {
+
+                transform: translateZ(50px) translateX(6px) translateY(-6px);
+
+                box-shadow: -12px 12px 20px -12px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        @keyframes shadow-drop-1-bl {
+            0% {
+
+
+                transform: translateZ(50px) translateX(1px) translateY(-1px);
+
+                box-shadow: -6px 6px 20px -12px rgba(0, 0, 0, 0.9);
+
+
+            }
+
+            100% {
+                transform: translateZ(0) translateX(0) translateY(0);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+        }
+
+        .footer-item .subscribe {
+            /* background-color: red; */
+            width: 100%;
+            display: flex;
+            height: 15%;
+            margin-top: 15%;
+
+        }
+
+        .subscribe .input_email {
+            width: 80%;
+            height: 100%;
+            padding: 2px;
+            font-size: 15px;
+        }
+
+        .subscribe .submit_btn {
+            width: 20%;
+            border: none;
+            background-color: #a1a1a1;
+            padding: 1%;
+            color: #4f4f4f;
+            cursor: pointer;
+            position: relative;
+            display: block;
+            transition: .3s;
+        }
+
+        /* 設定送出按鈕動畫 */
+        .submit_btn::after {
+            content: attr(data-replace);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            position: absolute;
+            top: -100%;
+            left: 0;
+            color: #ffffff00;
+            background-color: transparent;
+            transition: .3s;
+            /* padding: 1%; */
+
+        }
+
+        .submit_btn:hover::after {
+            transform: translateY(101%);
+            background-color: #2f2f2f;
+            color: #ffffff;
+        }
+
+        .submit_btn:hover {
+            color: transparent;
+            background-color: transparent;
+
+        }
+
+        /* 設定側邊按鈕 */
+
+        .utility {
+            height: 15%;
+            background-color: #f08;
+            width: 6%;
+            max-width: 50px;
+            position: absolute;
+            left: 0;
+            top: 15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .utility a {
+            width: 100%;
+            max-width: 50px;
+            height: 100%;
+            color: #4f4f4f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+
+            background-color: #fcfcfc;
+            cursor: pointer;
+            position: relative;
+            transition: .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+
+        .utility a::before {
+            content: "";
+            position: absolute;
+            height: 130%;
+            width: 130%;
+            background-color: #2f2f2f;
+            border-radius: 200%;
+            left: -115%;
+            bottom: -115%;
+            transition: .3s;
+
+        }
+
+        .utility a:hover::before {
+            transform: translate(70%, -75%) scale(1.2);
+        }
+
+        .utility a i {
+            transition: .3s;
+        }
+
+        .utility a:hover i {
+            color: #fff;
+            z-index: 1;
+        }
+
+
+        /* 滾動條設定 */
+        body::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+            /* background-color: rgba(0, 0, 0, 0.3); */
+        }
+
+        body::-webkit-scrollbar-button {
+            background-color: transparent;
+        }
+
+        body::-webkit-scrollbar-track-piece {
+            background-color: rgba(0, 0, 0, );
+            /* border-radius: 200px; */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, .5);
+            /* border-radius: 200px; */
+        }
+
+
+
+        /* 響應式設定_漢堡 */
+
+        header .burger {
+            display: none;
+        }
+
+        .burger_links {
+            display: none;
+        }
+
+        @media screen and (max-width:560px) {
+
+            header .header_item {
+                display: none;
+            }
+
+
+            header {
+                position: relative;
+            }
+
+            .header_item:nth-child(3) {
+
+                display: block;
+                position: absolute;
+                right: 10%;
+
+
+            }
+
+            header .burger {
+                display: block;
+                width: 75px;
+                position: absolute;
+                height: 100%;
+                left: 0;
+            }
+
+            header .burger .line_wrap {
+                position: absolute;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                left: 0;
+                /* background-color: #4f4f4f; */
+                height: 100%;
+                top: 0;
+                justify-content: space-evenly;
+                padding: 0 8px;
+                /* border: 1px solid red; */
+
+            }
+
+            header .burger .line_wrap .line {
+
+                background-color: #ffffff;
+                width: 100%;
+                height: 5px;
+                /* position: absolute; */
+                left: 0;
+                top: 0;
+                border-radius: 25px;
+            }
+
+
+
+
+            .burger_links {
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(26, 26, 26);
+                position: absolute;
+                left: 0;
+                height: 90vh;
+                width: 30%;
+                /* align-items: center; */
+                /* justify-content: space-around */
+                transform: translate(-100%);
+                transition: .3s;
+                z-index: 4;
+                box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.5);
+            }
+
+
+            .burger_links .burger_item {
+
+                background-color: #545454;
+                width: 100%;
+                height: 10%;
+                font-size: 20px;
+                color: #dbdbdb;
+                text-decoration: none;
+                line-height: 3;
+                padding-left: 5%;
+                margin-top: 6px;
+            }
+
+
+            .utility {
+                width: 20%;
+                left: initial;
+                right: 0;
+            }
+
+            .bread_crumb {
+                /* width: 60%;
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0; */
+                display: none;
+
+            }
+
+            /* .bread_crumb .bread_crumb_item{font-size: 10px;} */
+
+
+
+            .goods_container .goods_item {
+                width: 100%;
+                height: 300px;
+            }
+
+            .payment .credit_card {
+                top: 0;
+            }
+
+            .payment .information {
+                margin-top: 20%;
+            }
+
+            .shopping_cart {
+                left: initial;
+                right: 100%;
+                transform-origin: top right;
+            }
+
+
+            .footer {
+                flex-direction: column;
+                flex-wrap: wrap;
+                height: 70vh;
+                bottom: -70%;
+            }
+
+
+            .footer .footer-item {
+                width: 50%;
+                height: 50%;
+            }
+
+
+
+
+
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 設定表頭 -->
+
+    <header>
+        <a href="" class="header_item" data-replace="登山用品">
+            <span>
+                登山用品
+            </span>
+        </a>
+        <a href="" class="header_item" data-replace="露營">
+            <span>露營
+            </span>
+        </a>
+        <div class="header_item">
+            <img src="logo1.jpg" alt="">
+        </div>
+        <a href="" class="header_item" data-replace="健行">
+            <span>
+                健行
+            </span>
+        </a>
+        <a href="" class="header_item " data-replace="極限運動">
+            <span>
+                極限運動
+            </span>
+        </a>
+
+        <!-- 漢堡 -->
+
+        <div class="burger" id="burger">
+            <div class="line_wrap">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- 漢堡_側拉欄 -->
+
+
+    <div class="burger_links" id="burger_links">
+        <a href="" class="burger_item">登山用品</a>
+        <a href="" class="burger_item">露營</a>
+        <a href="" class="burger_item">健行</a>
+        <a href="" class="burger_item">極限運動</a>
+
+
+
+    </div>
+
+    <!-- 設定側邊按鈕 -->
+    <div class="utility">
+
+        <a href="#" class="btn_user">
+            </i><i class="fa-solid fa-cart-shopping"></i>
+        </a> <a href="#" class="btn_shopping_cart">
+            <i class="fa-solid fa-user"></i></a>
+    </div>
+
+    <!-- 設定輪播圖片 -->
+
+    <div class="carousel">
+        <div class="carousel_btn" id="carousel_btn_right">
+            <span class="material-symbols-outlined">
+                arrow_forward_ios
+            </span>
+        </div>
+        <div class="carousel_btn" id="carousel_btn_left">
+            <span class="material-symbols-outlined">
+                arrow_back_ios
+            </span>
+        </div>
+        <div class="carousel_slider">
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_1">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+
+                        登山旅遊前，準備充足的登山用品是非常重要的。常備的裝備包括登山鞋、護膝、登山杖、背包、保暖衣物、雨具、頭燈、手套、帽子、防曬霜、體溫計等。特殊路線需準備冰斧、冰爪等攀登用品。提醒您，要確保裝備符合安全標準，且裝備使用熟練，以免發生安全事故。
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_2">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+                        計劃一趟露營旅行，就需要準備全套的露營裝備。我們提供多樣性的露營用品，包括帳篷、燈具、烹飪用品和舒適的睡袋等。不論您是想在山林中露營、在海邊露營或者在草原上露營，我們都有適合的裝備來滿足您的需求。
+
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_3">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+                        嚮往戶外活動嗎？放下手機，走出室內，進入大自然的懷抱，享受療癒力量。戶外活動可以幫助您紓解壓力，增強體魄，培養探索精神和團隊精神。無論是徒步旅行、露營、攀岩還是野外求生，每個活動都有其獨特的魅力和體驗。
+
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_4">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+
+                        征服最嚴峻山峰，穿上Kngshoes第四代登山鞋！最新設計，結合舒適與耐用，勇闖山徑從未如此輕鬆。
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_5">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+                        全新TORI-5登山包，採用輕量化設計，比前一款減輕30%重量，更大的容量輕鬆容納您的登山裝備。我們提供6種款式可供選擇。
+
+
+
+
+
+                    </p>
+                </div>
+            </a>
+        </div>
+        <ul class="carousel_dots">
+
+            <a href="#" id="dot_img_1"></a>
+            <a href="#" id="dot_img_2"></a>
+            <a href="#" id="dot_img_3"></a>
+            <a href="#" id="dot_img_4"></a>
+            <a href="#" id="dot_img_5"></a>
+
+    </div>
+
+
+    <!-- 設定頁中圖片 -->
+
+    <div class="mid_container">
+        <div href="#" target="_blank" class="mid_container_item">
+            <div class="mid_item_front">
+
+                <div class="mid_item_img">
+                    <img src="登山鞋.jpg" alt="">
+
+                </div>
+                <div class="mid_item_content">
+                    <h2 class="mid_item_title">登山鞋</h2>
+                    <p class="mid_item_text">選擇一雙好的登山鞋，征服山巔之巔。</p>
+
+                </div>
+            </div>
+            <div class="mid_item_back">
+                <div class="mid_item_back_img">
+                    <img src="登山鞋2.jpg"back_img" id="back_img_1">
+                </div>
+                <div class="back_content">
+                    <div class="back_list">
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_1_1">MtOP系列新款</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_1_2">WildPaws防水鞋</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_1_3">經典90s鞋款</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_1_4">FeatherFit登山鞋</a>
+                        <a href="./登山購物頁面-購物.html" target="_blank" class="back_list_item" id="back_item_1_5">2023春季限定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div href="#" target="_blank" class="mid_container_item">
+            <div class="mid_item_front">
+
+                <div class="mid_item_img">
+                    <img src="登山包3.jpg" alt="">
+                </div>
+                <div class="mid_item_content">
+                    <h2 class="mid_item_title">登山包</h2>
+                    <p class="mid_item_text">選擇一個適合自己的登山包，發現更遼闊的山野世界。</p>
+                </div>
+            </div>
+            <div class="mid_item_back">
+                <div class="mid_item_back_img">
+                    <img src="登山包4.jpg" class="back_img" id="back_img_2">
+                </div>
+                <div class="back_content">
+                    <div class="back_list">
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_2_1">2023春季限定</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_2_2">TORI第四代防水包</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_2_3">Karakoram探險家</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_2_4">Antelope深山包</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_2_5">瀏覽所有款式</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div href="#" target="_blank" class="mid_container_item">
+            <div class="mid_item_front">
+
+                <div class="mid_item_img">
+                    <img src="露營3.jpg" alt="">
+
+                </div>
+                <div class="mid_item_content">
+                    <h2 class="mid_item_title">露營</h2>
+                    <p class="mid_item_text">輕裝上路，遇見更真實的自己 —— 選擇一套完整的露營用品，開啟一場與大自然零距離的靈魂之旅。 </p>
+
+                </div>
+            </div>
+            <div class="mid_item_back">
+                <div class="mid_item_back_img">
+                    <img src="露營.jpg" class="back_img" id="back_img_3">
+                </div>
+                <div class="back_content">
+                    <div class="back_list">
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_3_1">Cliffer帳篷</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_3_2">Stellar露營燈</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_3_3">炊具和餐具</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_3_4">急救箱</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_3_5">瀏覽所有用品</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div href="#" target="_blank" class="mid_container_item">
+            <div class="mid_item_front">
+
+
+                <div class="mid_item_img">
+                    <img src="進階登山裝備.jpg" alt="">
+                </div>
+                <div class="mid_item_content">
+                    <h2 class="mid_item_title">進階挑戰</h2>
+                    <p class="mid_item_text">攀登極限，安全為先 —— 選擇可靠的進階登山用具，守護每一次高峰挑戰的安全。</p>
+                </div>
+            </div>
+            <div class="mid_item_back">
+                <div class="mid_item_back_img">
+                    <img src="羅盤.jpg" class="back_img" id="back_img_4">
+                </div>
+                <div class="back_content">
+                    <div class="back_list">
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_4_1">CAPT電子羅盤</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_4_2">Rooter冰山達人</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_4_3">攀岩用具</a>
+                        <a href="#" target="_blank" class="back_list_item" id="back_item_4_4">瀏覽更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 設定頁尾 -->
+
+
+    <div class="footer">
+
+        <div class="footer-item">
+            <h4>關於本公司</h4>
+            <nav>
+                <a href="#" class="footer_tag" id="footer_tag_1">
+                    <p>公司背景</p>
+
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_2">
+                    <p>聯絡我們</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_3">
+                    <p>隱私權政策</p>
+                </a>
+            </nav>
+        </div>
+        <div class="footer-item">
+            <h4>各項服務</h4>
+            <nav>
+                <a href="#" class="footer_tag" id="footer_tag_4">
+                    <p>登山用品</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_5">
+                    <p>露營用品</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_6">
+                    <p>其他服務</p>
+                </a>
+
+            </nav>
+        </div>
+        <div class="footer-item">
+            <h4>門市據點</h4>
+            <nav>
+
+                <a href="#" class="footer_tag" id="footer_tag_7">
+                    <p>台北</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_8">
+                    <p>台中</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_9">
+                    <p>高雄</p>
+                </a>
+            </nav>
+        </div>
+        <div class="footer-item footer-subs">
+            <h4>訂閱最新消息</h4>
+            <form class="subscribe">
+                <input type="email" class="input_email" required placeholder="請輸入電子郵件">
+                <button class="submit_btn" data-replace="訂閱">訂閱</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./登山購物頁面.js"></script>
+</body>
+
+</html>

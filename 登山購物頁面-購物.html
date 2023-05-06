@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物網站頁面</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital@1&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+
+
+    <script src="https://kit.fontawesome.com/59df8fb993.js" crossorigin="anonymous"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            box-sizing: border-box;
+            font-family: Noto Sans TC, Comic Neue;
+            list-style-type: none;
+
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            /* position: relative; */
+        }
+
+        body {
+            background-color: #ccc;
+        }
+
+        header {
+            height: 10vh;
+            background-color: rgba(0, 0, 0, .9);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 2px 0;
+        }
+
+        header .header_item {
+            height: 40%;
+            /* border: 1px #fff solid; */
+            text-decoration: none;
+            color: #fff;
+
+            position: relative;
+            width: 10%;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            width: 7%;
+            padding-left: 1.2%;
+        }
+
+        header .header_item img {
+            height: 100%;
+
+        }
+
+        header .header_item:nth-child(3) {
+            height: 100%;
+            padding: 0;
+        }
+
+
+
+        /* 連結動畫設定 */
+        header a::before,
+        header a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            left: 0;
+        }
+
+
+        /* 設定底線 */
+        header a::before {
+            background-color: #ffffff;
+            height: 2px;
+            bottom: 0;
+            /* left: 20%; */
+            /* width: 80%; */
+            transform-origin: 100% 50%;
+            transform: scaleX(0);
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+
+        /* 設定文字 */
+        header a::after {
+            content: attr(data-replace);
+            height: 100%;
+            bottom: 2px;
+            /* top: 2px; */
+            /* left: 20%; */
+            transform-origin: 100% 50%;
+            transform: translate3d(200%, 0, 0);
+            transition: all .3s cubic-bezier(0.76, 0, 0.24, 1);
+            color: transparent;
+
+        }
+
+        header a:hover::before {
+            transform-origin: 0% 50%;
+            transform: scaleX(1);
+            color: #cecece;
+        }
+
+        header a:hover::after {
+            transform: translate3d(0, 0, 0);
+            color: #cecece;
+
+        }
+
+
+        header a span {
+            display: inline-block;
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+            transition: .3s;
+        }
+
+        header a:hover span {
+            transform: translate3d(-200%, 0, 0);
+            color: transparent;
+        }
+
+
+        /* 設定輪播圖片 */
+        .carousel {
+            width: 65%;
+            height: 30%;
+            background-color: transparent;
+            position: relative;
+            margin: 5vh auto 0 auto;
+            /* display: flex; */
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            -webkit-box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            -moz-box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+
+
+
+        }
+
+        .carousel .carousel_slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: transparent;
+            overflow: hidden;
+            scroll-behavior: smooth;
+        }
+
+
+        .carousel .carousel_btn {
+            position: absolute;
+            background-color: rgba(53, 249, 249, 0);
+            height: 100%;
+            width: 10%;
+            z-index: 1;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .carousel .carousel_btn span {
+            color: #a1a1a1;
+            font-size: 35px;
+
+
+        }
+
+        .carousel #carousel_btn_right {
+            right: 0;
+            justify-content: end;
+        }
+
+        .carousel #carousel_btn_left {
+            left: 0;
+            justify-content: start;
+            padding-left: 1%;
+        }
+
+        .carousel .carousel_btn:hover span {
+            color: #00000094;
+        }
+
+
+        .carousel .carousel_slider .carousel_img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            background-color: rgb(191, 94, 94);
+            /* position: absolute; */
+            /* border: 1px solid lightgreen; */
+            background-size: cover;
+            background-position: 5%;
+            text-decoration: none;
+            transition: .3s;
+
+
+        }
+
+
+        #carousel_img_1 {
+            background-image: url(其他5.jpg);
+            transform: translatex(-200%);
+            background-position: 30%;
+        }
+
+        #carousel_img_2 {
+            background-image: url(工具.jpg);
+            background-position: 50%;
+            transform: translatex(-200%);
+        }
+
+
+        #carousel_img_3 {
+            background-image: url(工具2.jpg);
+            transform: translatex(-200%);
+            /* background-position:20%; */
+        }
+
+        #carousel_img_4 {
+            background-image: url(登山鞋2.jpg);
+            background-position: 5%;
+            transform: translatex(-200%);
+        }
+
+        #carousel_img_5 {
+            background-image: url(登山包2.jpg);
+            transform: translatex(-200%);
+            background-position: 30%;
+        }
+
+        .carousel_img .carousel_cover {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .1);
+            position: relative;
+            transition: .5s;
+        }
+
+        .carousel_img .carousel_content {
+            color: transparent;
+            position: absolute;
+            bottom: 0;
+            padding: 2% 2% 6% 2%;
+            transition: .5s;
+        }
+
+
+        .carousel_img:hover .carousel_cover {
+            background-color: rgba(0, 0, 0, .5);
+
+        }
+
+        .carousel_img:hover .carousel_cover .carousel_content {
+            color: #e5e5e5;
+            z-index: 1;
+        }
+
+        /* 連播圖下方的點 */
+
+        .carousel .carousel_dots {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            bottom: 5%;
+            /* border: 1px solid #000; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel .carousel_dots a {
+            height: 10px;
+            width: 10px;
+            margin: 0 2% 0;
+            border-radius: 500px;
+            background-color: rgba(116, 116, 116, 0.407);
+            /* transform: .8s; */
+            /* position: absolute; */
+            /* display: flex; */
+        }
+
+
+
+        .carousel .carousel_dots a:nth-child(3) {
+            background-color: rgba(50, 50, 50, 0.7);
+        }
+
+
+
+        /* 設定頁尾 */
+
+        .footer {
+            background-color: rgba(0, 0, 0, .9);
+            height: 50vh;
+            width: 100%;
+            position: absolute;
+            bottom: -50%;
+            display: flex;
+        }
+
+        .footer-item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* border: 1px solid red; */
+            padding: 2%;
+        }
+
+        .footer-item h4 {
+            color: #f5f0f0d6;
+            margin-bottom: 10%;
+            position: relative;
+            padding-left: 2%;
+
+        }
+
+        .footer-item h4::after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            background-color: #545454;
+            position: absolute;
+            bottom: -30%;
+            left: 2%;
+
+        }
+
+        .footer-item nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-item nav a {
+            text-decoration: none;
+            color: #ccc;
+            padding: 5% 0 5% 2%;
+            /* border: 1px solid green; */
+            height: 100%;
+            /* transition: .3s cubic-bezier(.17, .67, .83, .67);  */
+            /* box-shadow: -12px 12px 20px -12px rgba(0, 0, 0, 0.9); */
+
+        }
+
+        .footer-item nav a:hover {
+
+            background-color: #545454;
+            transition: .2s;
+            animation: shadow-drop-2-bl .2s;
+            animation-fill-mode: forwards;
+
+        }
+
+        .footer-item nav a:active {
+            animation: shadow-drop-1-bl .2s;
+        }
+
+        @keyframes shadow-drop-2-bl {
+            0% {
+
+                transform: translateZ(0) translateX(0) translateY(0);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+
+            100% {
+
+                transform: translateZ(50px) translateX(6px) translateY(-6px);
+
+                box-shadow: -12px 12px 20px -12px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        @keyframes shadow-drop-1-bl {
+            0% {
+
+
+                transform: translateZ(50px) translateX(1px) translateY(-1px);
+
+                box-shadow: -6px 6px 20px -12px rgba(0, 0, 0, 0.9);
+
+
+            }
+
+            100% {
+                transform: translateZ(0) translateX(0) translateY(0);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+        }
+
+        .footer-item .subscribe {
+            /* background-color: red; */
+            width: 100%;
+            display: flex;
+            height: 15%;
+            margin-top: 15%;
+
+        }
+
+        .subscribe .input_email {
+            width: 80%;
+            height: 100%;
+            padding: 2px;
+            font-size: 15px;
+        }
+
+        .subscribe .submit_btn {
+            width: 20%;
+            border: none;
+            background-color: #a1a1a1;
+            padding: 1%;
+            color: #4f4f4f;
+            cursor: pointer;
+            position: relative;
+            display: block;
+            transition: .3s;
+        }
+
+        /* 設定送出按鈕動畫 */
+        .submit_btn::after {
+            content: attr(data-replace);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            position: absolute;
+            top: -100%;
+            left: 0;
+            color: #ffffff00;
+            background-color: transparent;
+            transition: .3s;
+            /* padding: 1%; */
+
+        }
+
+        .submit_btn:hover::after {
+            transform: translateY(101%);
+            background-color: #2f2f2f;
+            color: #ffffff;
+        }
+
+        .submit_btn:hover {
+            color: transparent;
+            background-color: transparent;
+
+        }
+
+        /* 設定側邊按鈕 */
+
+        .utility {
+            height: 15%;
+            background-color: #f08;
+            width: 6%;
+            max-width: 50px;
+            position: absolute;
+            left: 0;
+            top: 15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .utility a {
+            width: 100%;
+            max-width: 50px;
+            height: 100%;
+            color: #4f4f4f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+
+            background-color: #fcfcfc;
+            cursor: pointer;
+            position: relative;
+            transition: .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+
+        .utility a::before {
+            content: "";
+            position: absolute;
+            height: 130%;
+            width: 130%;
+            background-color: #2f2f2f;
+            border-radius: 200%;
+            left: -115%;
+            bottom: -115%;
+            transition: .3s;
+
+        }
+
+        .utility a:hover::before {
+            transform: translate(70%, -75%) scale(1.2);
+        }
+
+        .utility a i {
+            transition: .3s;
+        }
+
+        .utility a:hover i {
+            color: #fff;
+            z-index: 1;
+        }
+
+
+        /* 滾動條設定 */
+        body::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+            /* background-color: rgba(0, 0, 0, 0.3); */
+        }
+
+        body::-webkit-scrollbar-button {
+            background-color: transparent;
+        }
+
+        body::-webkit-scrollbar-track-piece {
+            background-color: rgba(0, 0, 0, );
+            /* border-radius: 200px; */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, .5);
+            /* border-radius: 200px; */
+        }
+
+        /* 麵包屑設定 */
+
+        .bread_crumb {
+            width: 70%;
+            margin: auto;
+            height: 5%;
+            background-color: #242424de;
+            margin-top: 5vh;
+            display: flex;
+        }
+
+        .bread_crumb .bread_crumb_item {
+            /* background-color: #f08; */
+            text-align: center;
+            text-decoration: none;
+            color: #a1a1a1;
+            margin-left: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bread_crumb .bread_crumb_item+.bread_crumb_item::before {
+            content: ">";
+            position: absolute;
+            left: -15px;
+        }
+
+        .bread_crumb .bread_crumb_item:hover {
+            color: #d4d4d4;
+        }
+
+        .bread_crumb .bread_crumb_item:last-child {
+            color: rgb(208, 250, 153);
+        }
+
+        ::before {
+            color: #a1a1a1;
+        }
+
+        /* 設定商品 */
+
+        .goods_container {
+            /* background-color: pink; */
+            width: 70%;
+            height: 90%;
+            margin: 3vh auto;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .goods_container .goods_item {
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            width: calc(100%/3.2);
+            /* width: 100%; */
+            /* border: 1px solid black; */
+            margin: 1%;
+            overflow: hidden;
+            transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        .goods_container .goods_item .goods_content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* transform: rotatey(180deg); */
+            transition: .5s;
+        }
+
+        .goods_container .goods_item .goods_content img {
+            position: absolute;
+            left: 0;
+            width: 80%;
+            object-fit: cover;
+            height: 100%;
+            filter: brightness(80%);
+        }
+
+        .title_wrap {
+            width: 21%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            position: absolute;
+            /* background-color: rgb(255, 136, 0); */
+            right: 1%;
+            padding-left: 3%;
+            color: #2f2f2f;
+            font-size: 12px;
+        }
+
+        .goods_container .goods_item .goods_content .icon_wrap {
+            width: 9%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            /* background-color: rgb(163, 14, 14); */
+            right: 22%;
+            z-index: 1;
+            color: #545454;
+        }
+
+        .goods_item:hover {
+            transform: scale(1.3);
+            z-index: 1;
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+        }
+
+        .icon_wrap span:hover {
+            color: #a1a1a1;
+            animation: icon_1 infinite .8s;
+            cursor: pointer;
+        }
+
+        @keyframes icon_1 {
+
+            0% {
+                transform: scale(1);
+                color: #2f2f2f
+            }
+
+            ;
+
+            25% {
+                transform: scale(.8);
+                color: #4f4f4f;
+            }
+
+            50% {
+                transform: scale(1.3);
+                color: #2f2f2f;
+            }
+
+            75% {
+                transform: scale(1.1);
+                color: #4f4f4f;
+            }
+
+            100% {
+                transform: scale(1);
+                color: #2f2f2f;
+            }
+        }
+
+
+
+        /* .goods_content:hover,
+        .goods_content:hover+.goods_utility {
+            transform: translateX(-90%);
+        } */
+
+        /* .goods_container .goods_item .goods_content  .icon_wrap span{z-index: 1;}} */
+
+        .goods_item .goods_content::after {
+            content: "";
+            height: 100%;
+            width: 100%;
+            /* border-left: #f08 30px solid;
+            border-top: rgb(53, 196, 108) 15px solid;
+            border-bottom: rgb(13, 56, 197) 15% solid; */
+            background-color: #ffffff;
+            position: absolute;
+            clip-path: polygon(100% 0, 100% 100%, 85% 50%);
+            right: 19%;
+        }
+
+        .goods_item .goods_utility {
+            background-color: #fff;
+            position: absolute;
+            width: 80%;
+            height: 100%;
+            top: 0;
+            right: -80%;
+            padding: 5%;
+            /* transform-origin: left; */
+            /* transform: rotatey(180deg) ; */
+            z-index: 1;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            transition: .5s;
+        }
+
+        .goods_utility img {
+            height: 40%;
+            width: 100%;
+        }
+
+        .goods_discribe {
+            font-size: 18px;
+            color: #4f4f4f00;
+
+            position: absolute;
+            width: 80%;
+            height: 100%;
+            padding: 5% 12% 0 2%;
+            transition: .3s;
+        }
+
+        .goods_discribe:hover {
+            background-color: rgba(0, 0, 0, .5);
+            color: #e5e5e5;
+        }
+
+        .goods_discribe span {
+            /* color: #2f2f2f; */
+            font-weight: 700;
+        }
+
+        .goods_discribe p {
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        .goods_utility .goods_option {
+            width: 100%;
+            padding-left: 1px;
+        }
+
+        .goods_container .goods_item .goods_utility div {
+            /* background-color: red; */
+            /* border: 1px solid red; */
+            margin: 2% 0;
+
+        }
+
+        .goods_utility .color_btn {
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            cursor: pointer;
+            border: none;
+
+        }
+
+        .goods_utility .color_btn:first-child {
+            background-color: burlywood;
+        }
+
+        .goods_utility .color_btn:nth-child(2) {
+            background-color: rgb(150, 120, 81);
+        }
+
+        .goods_utility .color_btn:last-child {
+            background-color: rgb(6, 59, 75);
+        }
+
+
+
+        .goods_utility .goods_qountity {
+            display: flex;
+            width: 100%;
+
+        }
+
+        .goods_utility .goods_qountity label {
+            margin-right: 2%;
+            color: #2f2f2f;
+        }
+
+        .goods_utility .goods_qountity input {
+            width: 20%;
+            border: none;
+            padding-left: 2px;
+            margin: 3px;
+            background-color: #e0e0e0;
+        }
+
+        .goods_utility .goods_actions {
+            width: 100%;
+            height: 15%;
+            align-items: center;
+            justify-content: space-evenly;
+            position: relative;
+            display: flex;
+        }
+
+        abbr,
+        .goods_utility .goods_actions .function_btn {
+            text-decoration: none;
+            border: none;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            color: #a1a1a1;
+            height: 100%;
+            cursor: pointer;
+
+        }
+
+
+        .goods_actions .function_btn:first-child:hover span {
+            color: rgb(190, 101, 116);
+            /* animation: action_btn .5s cubic-bezier(0.165, 0.84, 0.44, 1); */
+        }
+
+        .goods_actions .function_btn:first-child:active span {
+            color: rgb(131, 70, 80);
+            animation: action_btn .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .goods_actions .function_btn:nth-child(2):hover span {
+            color: rgb(101, 153, 185);
+        }
+
+        .goods_actions .function_btn:nth-child(2):active span {
+            color: rgb(84, 127, 153);
+            animation: action_btn .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .goods_actions .function_btn:last-child:hover span {
+            color: rgb(125, 150, 87);
+        }
+
+        .goods_actions .function_btn:last-child:active span {
+            color: rgb(125, 150, 87);
+            animation: action_btn .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+
+
+        @keyframes action_btn {
+            0% {
+                transform: scale(1.1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(0.9);
+            }
+        }
+
+        .goods_item .on_stock {
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            font-size: 10px;
+            color: #4f4f4f;
+        }
+
+
+
+        /* 設定購物車 */
+
+        .shopping_cart {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(188, 188, 189);
+            position: absolute;
+            transform-origin: top left;
+            width: calc(100%*5.3);
+            height: calc(100%*5);
+            z-index: 2;
+            left: 100%;
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94);
+            top: 0%;
+            padding: 20%;
+            padding-right: 25%;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0);
+            transition: .3s;
+        }
+
+
+
+        .cart_container {
+            display: flex;
+            /* background-color: bisque; */
+            padding: 1%;
+            margin-bottom: 5%;
+            /* box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.94); */
+        }
+
+        .shopping_cart .shopping_cart_item {
+            background-color: #d4d4d4;
+            width: 50%;
+            height: 100%;
+            padding-left: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            position: relative;
+        }
+
+        .close_btn {
+            background-color: transparent;
+            position: absolute;
+            right: 0;
+            top: 0;
+            border: none;
+            z-index: 1;
+        }
+
+        .close_btn span {
+            color: #383838;
+            font-size: 20px;
+        }
+
+        .close_btn:hover span {
+            color: #080808;
+        }
+
+
+        .cart_item_place {
+            height: 100%;
+            /* background-color: black; */
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15%;
+        }
+
+        .shopping_cart .cart_container .shopping_cart_item p {
+            /* border: 1px solid #f88; */
+            color: #383838;
+            height: 100%;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .cart_container img {
+            width: 50%;
+            height: 100%;
+
+        }
+
+        .cart_container .item_delete {
+            border-radius: 300%;
+            border: none;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fcfcfc;
+            background-color: rgb(211, 89, 109);
+            position: absolute;
+            right: -9%;
+            display: none;
+        }
+
+        .cart_container .item_delete span {
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .cart_container .shopping_cart_item .cart_number {
+            width: 50%;
+        }
+
+        .shopping_cart .cart_total_wrap {
+            position: absolute;
+            bottom: 2%;
+            right: 2%;
+            background-color: #ccc;
+            width: 90%;
+            text-align: end;
+            margin: 0 3%;
+            border-top: 2px solid rgb(116, 116, 116);
+            /* height: 5%; */
+            padding: 2% 0;
+        }
+
+        .shopping_cart .cart_total_wrap .chack {
+            color: rgb(49, 49, 49);
+            border: none;
+            width: 20%;
+            /* border-radius: 20px; */
+
+
+        }
+
+        .shopping_cart .cart_total_wrap .chack:hover {
+            background-color: #ccc;
+        }
+
+        .shopping_cart .cart_total_wrap .chack:active {
+            background-color: #383838;
+            color: #fff;
+        }
+
+        .delete_btn,
+        .shopping_cart .cart_total_wrap .refresh_btn {
+            position: absolute;
+            border: none;
+            background-color: transparent;
+            left: 1%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .delete_btn {
+            left: 10%;
+        }
+
+        .delete_btn:hover span {
+            color: rgb(192, 89, 106);
+            transform: scale(1.1);
+        }
+
+        .delete_btn span,
+        .cart_total_wrap .refresh_btn span {
+            font-size: 20px;
+            line-height: 1.2;
+            color: #4f4f4f;
+            transition: 1s;
+        }
+
+        .delete_btn span {
+            transition: .3s;
+        }
+
+        .shopping_cart .cart_total_wrap .refresh_btn:hover span {
+            transform: rotate(360deg);
+        }
+
+        /* 設定結帳頁 */
+
+        .payment {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* transform-style: preserve-3d; */
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            transform: scale(0);
+            transition: .3s;
+        }
+
+        .payment .credit_card {
+
+            /* background-color: blue; */
+            height: 210px;
+            width: 350px;
+            position: absolute;
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            /* transform: rotatey(180deg); */
+            top: 10%;
+            transition: .3s;
+        }
+
+        .payment .credit_card .card_front {
+            /* background-color: rgb(255, 173, 237); */
+            background: linear-gradient(45deg, rgb(241, 183, 183) 0%, rgba(227, 145, 145, 1) 100%);
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            position: relative;
+            padding: 5%;
+            backface-visibility: hidden;
+        }
+
+        .card_front .card_gold {
+            background-color: rgb(201, 185, 96);
+            width: 60px;
+            height: 50px;
+            border-radius: 10px;
+            position: absolute;
+            left: 13%;
+            top: 10%;
+        }
+
+        .card_front .card_number {
+            width: 100%;
+            /* background-color: aqua; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 45%;
+            left: 0;
+
+        }
+
+        .card_front .card_number p {
+            font-size: 30px;
+            color: rgb(85, 85, 85);
+            text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4),
+                0px 4pxpx rgba(0, 0, 0, 0.1),
+                0px 6px 15px rgba(0, 0, 0, 0.1);
+
+            /* animation: headup .5s linear infinite; */
+
+            box-sizing: border-box;
+
+        }
+
+        .card_front .card_date {
+
+            position: absolute;
+            /* background-color: blueviolet; */
+            right: 13%;
+            bottom: 15%;
+            font-size: 20px;
+            color: #636363;
+            /* border: 2px dashed rgb(201, 49, 49); */
+
+        }
+
+        .card_front .card_logo {
+            position: absolute;
+            right: 3%;
+            bottom: 3%;
+            font-size: 25px;
+            color: rgb(14, 74, 185);
+        }
+
+
+
+        .card_back {
+            height: 210px;
+            width: 350px;
+            /* background-color: rgb(255, 173, 237); */
+            background: linear-gradient(45deg, rgb(241, 183, 183) 0%, rgba(227, 145, 145, 1) 100%);
+            position: absolute;
+            top: 0;
+            border-radius: 15px;
+            padding: 10%;
+            transform: rotatey(180deg);
+            backface-visibility: hidden;
+
+        }
+
+
+        .card_back .card_black {
+            position: absolute;
+            width: 100%;
+            background-color: #000;
+            top: 15%;
+            /* z-index: 1; */
+            height: 20%;
+            left: 0;
+        }
+
+        .card_back .card_back_info {
+            width: 100%;
+            /* background-color: red; */
+            height: 20%;
+            position: absolute;
+            display: flex;
+            left: 0;
+            top: 50%;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .card_back .card_back_info .card_gray {
+            width: 65%;
+            height: 100%;
+            background-color: #aaaaaa;
+
+        }
+
+        .card_back .card_back_info .card_back_num {
+            font-size: 25px;
+            color: #696969;
+            padding-left: 5%;
+
+        }
+
+        /* 資訊輸入 */
+
+        .payment .information {
+            background-color: #d1c0c0;
+            width: 500px;
+            height: 350px;
+            padding: 5%;
+            /* border-radius: 8px; */
+            margin-top: 15%;
+            box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        .payment .information form {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .payment .information form .number_input_wrap {
+            display: flex;
+
+        }
+
+        .payment label {
+            color: #353535;
+            font-weight: 900;
+            /* width: 100%; */
+        }
+
+
+        .number_input_wrap .card_number_input,
+        .back_input_wrap input,
+        .date_input_wrap input {
+            width: 20px;
+            border: none;
+            background-color: #7a7a7a;
+            color: #fff;
+            padding-left: 1%;
+        }
+
+        .date_input_wrap input {
+            width: 20px;
+        }
+
+        .back_input_wrap input {
+            width: 30px;
+        }
+
+        .number_input_wrap .card_number_input {
+            width: 40px;
+        }
+
+        .card_btn_wrap {
+            display: flex;
+            margin-top: 5%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card_cancel,
+        .card_check {
+            border: none;
+            height: 100%;
+            width: 45%;
+            background-color: rgb(99, 123, 230);
+            font-size: 25px;
+            border-radius: px;
+            align-self: center;
+            cursor: pointer;
+        }
+
+        .card_cancel {
+            background-color: #636363;
+        }
+
+        @keyframes headup {
+
+            from {
+                border: none
+            }
+
+            to {
+                border: 2px dashed rgb(98, 157, 235);
+            }
+
+        }
+
+
+
+
+        /* 響應式設定_漢堡 */
+
+        header .burger {
+            display: none;
+        }
+
+        .burger_links {
+            display: none;
+        }
+
+        @media screen and (max-width:560px) {
+
+            header .header_item {
+                display: none;
+            }
+
+
+            header {
+                position: relative;
+            }
+
+            .header_item:nth-child(3) {
+
+                display: block;
+                position: absolute;
+                right: 10%;
+
+
+            }
+
+            header .burger {
+                display: block;
+                width: 75px;
+                position: absolute;
+                height: 100%;
+                left: 0;
+            }
+
+            header .burger .line_wrap {
+                position: absolute;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                left: 0;
+                /* background-color: #4f4f4f; */
+                height: 100%;
+                top: 0;
+                justify-content: space-evenly;
+                padding: 0 8px;
+                /* border: 1px solid red; */
+
+            }
+
+            header .burger .line_wrap .line {
+
+                background-color: #ffffff;
+                width: 100%;
+                height: 5px;
+                /* position: absolute; */
+                left: 0;
+                top: 0;
+                border-radius: 25px;
+            }
+
+
+
+
+            .burger_links {
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(26, 26, 26);
+                position: absolute;
+                left: 0;
+                height: 90vh;
+                width: 30%;
+                /* align-items: center; */
+                /* justify-content: space-around */
+                transform: translate(-100%);
+                transition: .3s;
+                z-index: 4;
+                box-shadow: 4px 4px 13px -3px rgba(0, 0, 0, 0.5);
+            }
+
+
+            .burger_links .burger_item {
+
+                background-color: #545454;
+                width: 100%;
+                height: 10%;
+                font-size: 20px;
+                color: #dbdbdb;
+                text-decoration: none;
+                line-height: 3;
+                padding-left: 5%;
+                margin-top: 6px;
+            }
+
+
+            .utility {
+                width: 20%;
+                left: initial;
+                right: 0;
+            }
+
+            .bread_crumb {
+                /* width: 60%;
+                position: absolute;
+                top: 5%;
+                left: 0;
+                right: 0; */
+                display: none;
+
+            }
+
+            /* .bread_crumb .bread_crumb_item{font-size: 10px;} */
+
+
+
+            .goods_container .goods_item {
+                width: 100%;
+                height: 300px;
+            }
+
+            .payment .credit_card{top: 0;}
+
+            .payment .information{margin-top: 20%;}
+
+            .shopping_cart {
+                left: initial;
+                right: 100%;
+                transform-origin: top right;
+            }
+
+
+            .footer {
+                flex-direction: column;
+                flex-wrap: wrap;
+                height: 70vh;
+                bottom: -70%;
+            }
+
+
+            .footer .footer-item {
+                width: 50%;
+                height: 50%;
+            }
+
+
+
+
+
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 設定表頭 -->
+
+    <header>
+        <a href="" class="header_item" data-replace="登山用品">
+            <span>
+                登山用品
+            </span>
+        </a>
+        <a href="" class="header_item" data-replace="露營">
+            <span>露營
+            </span>
+        </a>
+        <div class="header_item">
+            <img src="logo1.jpg" alt="">
+        </div>
+        <a href="" class="header_item" data-replace="健行">
+            <span>
+                健行
+            </span>
+        </a>
+        <a href="" class="header_item " data-replace="極限運動">
+            <span>
+                極限運動
+            </span>
+        </a>
+
+
+        <!-- 漢堡 -->
+
+        <div class="burger" id="burger">
+            <div class="line_wrap">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- 漢堡_側拉欄 -->
+
+
+    <div class="burger_links" id="burger_links">
+        <a href="" class="burger_item">登山用品</a>
+        <a href="" class="burger_item">露營</a>
+        <a href="" class="burger_item">健行</a>
+        <a href="" class="burger_item">極限運動</a>
+
+
+
+    </div>
+
+    <!-- 設定側邊按鈕 -->
+    <div class="utility">
+        <a class="btn_shopping_cart" onclick="total_price(),cart_open()">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+        <a class="btn_user" onclick="check_btn()">
+            <i class="fa-solid fa-user">
+
+            </i>
+        </a>
+
+        <div class="shopping_cart" id="shopping_cart">
+            <button class="close_btn" onclick="cart_close()">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+            <div class="cart_item_place" id="cart_item_place">
+                <!-- 購物車內的物品 -->
+                <!-- 
+                <div class="cart_container">
+
+                    <img class="cart_pic" src="登山鞋連結2.jpg" alt="">
+
+                    <div class="shopping_cart_item">
+                        <p class="cart_item_title">PAWS登山靴</p>
+                        <p>數量:<input type="number" value="1" min="1" class="cart_number"></p>
+                        <p class="cart_color">藍</p>
+                        <p>價格:<span class="cart_price">2999</span>$</p>
+                        <button class="item_delete">
+                            <span class="material-symbols-outlined">
+                                remove
+                            </span>
+                        </button>
+                    </div>
+
+
+
+                </div>
+                <div class="cart_container">
+
+                    <img class="cart_pic" src="登山鞋連結2.jpg" alt="">
+
+                    <div class="shopping_cart_item">
+                        <p class="cart_item_title">PAWS登山靴</p>
+                        <p>數量:<input type="number" value="1" min="1" class="cart_number"></p>
+                        <p class="cart_color">藍</p>
+                        <p>價格:<span class="cart_price">2999</span>$</p>
+                        <button class="item_delete">
+                            <span class="material-symbols-outlined">
+                                remove
+                            </span>
+                        </button>
+                    </div>
+
+
+
+                </div> -->
+
+
+
+            </div>
+
+
+
+            <p class="cart_total_wrap">
+                <button onclick="total_price()" class="refresh_btn">
+                    <span class="material-symbols-outlined">
+                        cached
+                    </span>
+                </button>
+                <button onclick="check_btn()" class="delete_btn">
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </button>
+                總計:
+                <span class="cart_total">
+
+                </span>$
+                <button class="chack" onclick="check_send()">
+                    結帳
+                </button>
+
+            </p>
+        </div>
+    </div>
+
+
+
+    <!-- 設定結帳頁 -->
+    <div class="payment" id="payment_1">
+
+
+
+        <div class="credit_card" id="credit_card">
+
+            <div class="card_front">
+                <div class="card_gold"></div>
+                <div class="card_number">
+                    <p id="card_number">1234 5678 9123 4567</p>
+
+                </div>
+                <p class="card_date" id="card_date">12/34</p>
+                <div class="card_logo"><i class="fa-brands fa-cc-visa"></i></div>
+
+            </div>
+
+
+            <div class="card_back">
+                <div class="card_black"></div>
+                <div class="card_back_info">
+                    <p class="card_gray"></p>
+                    <p class="card_back_num" id="card_back_num">123</p>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="information">
+            <form>
+                <label>卡號:</label>
+                <div class="number_input_wrap">
+                    <input class="card_number_input" type="text" pattern="[0-9]{4}" maxlength="4" required>-
+                    <input class="card_number_input" type="text" pattern="[0-9]{4}" maxlength="4" required>-
+                    <input class="card_number_input" type="text" pattern="[0-9]{4}" maxlength="4" required>-
+                    <input class="card_number_input" type="text" pattern="[0-9]{4}" maxlength="4" required>
+                </div>
+                <label>
+                    有效日期:
+                </label>
+                <div class="date_input_wrap">
+                    <input onclick="number_ani()" onblur="number_ani_close()" class="date_input" type="text" maxlength="2" required />/
+                    <input onclick="number_ani()" onblur="number_ani_close()" class="date_input" type="text" maxlength="2" required />
+                </div>
+                <div class="back_input_wrap">
+                    <label>
+                        驗證碼:
+                    </label>
+                    <input id="valid_num" type="text" maxlength="3" required />
+
+                </div>
+                <div class="card_btn_wrap">
+                    <button class="card_check">送出</button>
+                    <button class="card_cancel" onclick="check_no()">取消</button>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- 設定輪播圖片 -->
+
+    <div class="carousel">
+        <div class="carousel_btn" id="carousel_btn_right">
+            <span class="material-symbols-outlined">
+                arrow_forward_ios
+            </span>
+        </div>
+        <div class="carousel_btn" id="carousel_btn_left">
+            <span class="material-symbols-outlined">
+                arrow_back_ios
+            </span>
+        </div>
+        <div class="carousel_slider">
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_1">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+
+                        登山旅遊前，準備充足的登山用品是非常重要的。常備的裝備包括登山鞋、護膝、登山杖、背包、保暖衣物、雨具、頭燈、手套、帽子、防曬霜、體溫計等。特殊路線需準備冰斧、冰爪等攀登用品。提醒您，要確保裝備符合安全標準，且裝備使用熟練，以免發生安全事故。
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_2">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+                        計劃一趟露營旅行，就需要準備全套的露營裝備。我們提供多樣性的露營用品，包括帳篷、燈具、烹飪用品和舒適的睡袋等。不論您是想在山林中露營、在海邊露營或者在草原上露營，我們都有適合的裝備來滿足您的需求。
+
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_3">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+                        嚮往戶外活動嗎？放下手機，走出室內，進入大自然的懷抱，享受療癒力量。戶外活動可以幫助您紓解壓力，增強體魄，培養探索精神和團隊精神。無論是徒步旅行、露營、攀岩還是野外求生，每個活動都有其獨特的魅力和體驗。
+
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_4">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+
+                        征服最嚴峻山峰，穿上Kngshoes第四代登山鞋！最新設計，結合舒適與耐用，勇闖山徑從未如此輕鬆。
+                    </p>
+                </div>
+            </a>
+            <a href="#" target="_blank" class="carousel_img" id="carousel_img_5">
+                <div class="carousel_cover">
+                    <p class="carousel_content">
+                        全新TORI-5登山包，採用輕量化設計，比前一款減輕30%重量，更大的容量輕鬆容納您的登山裝備。我們提供6種款式可供選擇。
+
+
+
+
+
+                    </p>
+                </div>
+            </a>
+        </div>
+        <ul class="carousel_dots">
+
+            <a href="#" id="dot_img_1"></a>
+            <a href="#" id="dot_img_2"></a>
+            <a href="#" id="dot_img_3"></a>
+            <a href="#" id="dot_img_4"></a>
+            <a href="#" id="dot_img_5"></a>
+
+    </div>
+
+
+    <!-- 設定麵包屑 -->
+    <div class="bread_crumb">
+        <a href="" class="bread_crumb_item">
+            首頁
+        </a>
+        <a href="" class="bread_crumb_item">
+            登山用品
+        </a>
+        <a href="" class="bread_crumb_item">
+            登山鞋
+        </a>
+        <a href="" class="bread_crumb_item">
+            2023春季限定
+        </a>
+    </div>
+
+
+    <!-- 設定購物內容 -->
+
+    <div class="goods_container">
+
+
+        <div class="goods_item" id="good_item_1">
+
+
+            <div class="goods_content">
+                <img src="登山鞋.jpg" alt="" class="goods_img" id="goods_img_1">
+
+                <div class="goods_discribe">
+
+                    <span class="goods_title" id="goods_title_1">MtOP第四代</span>
+                    <p class="goods_text" id="goods_text_1">攀登高峰，MtOP登山鞋助你一臂之力！防水、輕便、橡膠纖維鞋底，專業採用！</p>
+                </div>
+
+                <div class="icon_wrap">
+                    <span class="material-symbols-outlined icon_btn">
+                        keyboard_double_arrow_left
+                    </span>
+                </div>
+
+                <div class="title_wrap">
+                    <h3>MtOP第四代</h3>
+                </div>
+            </div>
+
+
+            <form class="goods_utility" id="goods_utility_1">
+
+                <img src="登山鞋連結4.jpg" alt="">
+
+                <div class="goods_option">
+
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                </div>
+
+                <div class="goods_prics">
+
+                    <span id="goods_input_price_1" class="goods_input_price">2999</span>$
+                </div>
+                <div class="goods_qountity">
+                    <label for="goods_input_number_1">數量</label>
+                    <input type="number" min="1" id="goods_input_number_1" class="goods_input_number" value="1">
+                </div>
+
+
+                <div class="goods_actions">
+                    <span class="function_btn heart_icons">
+
+                        <abbr title="收藏">
+                            <span class="material-symbols-outlined heart_btn">
+                                favorite
+                            </span>
+                        </abbr>
+
+                    </span>
+                    <span class="function_btn function_btn_cart ">
+
+                        <abbr title="加入購物車">
+                            <span class="material-symbols-outlined cart_icon">
+                                add_shopping_cart
+                            </span>
+                        </abbr>
+
+                    </span>
+                    <span class="function_btn">
+
+                        <abbr title="直接購買">
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </abbr>
+
+                    </span>
+                </div>
+                <div class="on_stock">
+                    現有庫存:
+                    <span id="on_stock_number"> </span>
+                </div>
+            </form>
+
+
+        </div>
+
+
+        <div class="goods_item" id="good_item_2">
+
+
+            <div class="goods_content">
+                <img src="登山鞋2.jpg" alt="" class="goods_img" id="goods_img_2">
+
+                <div class="goods_discribe">
+
+                    <span class="goods_title" id="goods_title_2">MtOP第四代</span>
+                    <p class="goods_text" id="goods_text_2">打造堅實足底，征服每座高山</p>
+                </div>
+
+                <div class="icon_wrap">
+                    <span class="material-symbols-outlined icon_btn">
+                        keyboard_double_arrow_left
+                    </span>
+                </div>
+
+                <div class="title_wrap">
+                    <h3>ROOR 雨靴</h3>
+                </div>
+            </div>
+
+
+            <form class="goods_utility" id="goods_utility_2">
+
+                <img src="登山鞋連結4.jpg" alt="">
+
+                <div class="goods_option">
+
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                </div>
+
+                <div class="goods_prics">
+
+                    <span id="goods_input_price_2" class="goods_input_price">2999</span>$
+                </div>
+                <div class="goods_qountity">
+                    <label for="goods_input_number_2">數量</label>
+                    <input type="number" min="1" id="goods_input_number_2" class="goods_input_number" value="1">
+                </div>
+
+
+                <div class="goods_actions">
+                    <span class="function_btn heart_icons">
+
+                        <abbr title="收藏">
+                            <span class="material-symbols-outlined heart_btn">
+                                favorite
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn function_btn_cart">
+
+                        <abbr title="加入購物車">
+                            <span class="material-symbols-outlined cart_icon">
+                                add_shopping_cart
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn">
+
+                        <abbr title="直接購買">
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </abbr>
+
+                    </span>
+                </div>
+                <div class="on_stock">
+                    現有庫存:
+                    <span id="on_stock_number"> </span>
+                </div>
+            </form>
+
+
+        </div>
+
+        <div class="goods_item" id="good_item_3">
+
+
+            <div class="goods_content">
+                <img src="登山鞋連結1.jpg" alt="" class="goods_img" id="goods_img_3">
+
+                <div class="goods_discribe">
+
+                    <span class="goods_title" id="goods_title_3">PAWS 登山靴</span>
+                    <p class="goods_text" id="goods_text_3">越野之旅，PAWS登山靴與你同行</p>
+                </div>
+
+                <div class="icon_wrap">
+                    <span class="material-symbols-outlined icon_btn">
+                        keyboard_double_arrow_left
+                    </span>
+                </div>
+
+                <div class="title_wrap">
+                    <h3>PAWS 登山靴</h3>
+                </div>
+            </div>
+
+
+            <form class="goods_utility" id="goods_utility_3">
+
+                <img src="登山鞋連結4.jpg" alt="">
+
+                <div class="goods_option">
+
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                </div>
+
+                <div class="goods_prics">
+
+                    <span id="goods_input_price_3" class="goods_input_price">2999</span>$
+                </div>
+                <div class="goods_qountity">
+                    <label for="goods_input_number_3">數量</label>
+                    <input type="number" min="1" id="goods_input_number_3" class="goods_input_number" value="1">
+                </div>
+
+
+                <div class="goods_actions">
+                    <span class="function_btn heart_icons">
+
+                        <abbr title="收藏">
+                            <span class="material-symbols-outlined heart_btn">
+                                favorite
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn function_btn_cart">
+
+                        <abbr title="加入購物車">
+                            <span class="material-symbols-outlined cart_icon">
+                                add_shopping_cart
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn">
+
+                        <abbr title="直接購買">
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </abbr>
+
+                    </span>
+                </div>
+                <div class="on_stock">
+                    現有庫存:
+                    <span id="on_stock_number"> </span>
+                </div>
+            </form>
+
+
+        </div>
+
+        <div class="goods_item" id="good_item_4">
+
+
+            <div class="goods_content">
+                <img src="登山鞋底.jpg" alt="" class="goods_img" id="goods_img_4">
+
+                <div class="goods_discribe">
+
+                    <span class="goods_title" id="goods_title_4">MtOP第四代</span>
+                    <p class="goods_text" id="goods_text_4">攀登高峰，MtOP登山鞋助你一臂之力！防水、輕便、橡膠纖維鞋底，專業採用！</p>
+                </div>
+
+                <div class="icon_wrap">
+                    <span class="material-symbols-outlined icon_btn">
+                        keyboard_double_arrow_left
+                    </span>
+                </div>
+
+                <div class="title_wrap">
+                    <h3>FeaT 探險家</h3>
+                </div>
+            </div>
+
+
+            <form class="goods_utility" id="goods_utility_4">
+
+                <img src="登山鞋連結4.jpg" alt="">
+
+                <div class="goods_option">
+
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                </div>
+
+                <div class="goods_prics">
+
+                    <span id="goods_input_price_4" class="goods_input_price">2999</span>$
+                </div>
+                <div class="goods_qountity">
+                    <label for="goods_input_number_4">數量</label>
+                    <input type="number" min="1" id="goods_input_number_4" class="goods_input_number" value="1">
+                </div>
+
+
+                <div class="goods_actions">
+                    <span class="function_btn heart_icons">
+
+                        <abbr title="收藏">
+                            <span class="material-symbols-outlined heart_btn">
+                                favorite
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn function_btn_cart">
+
+                        <abbr title="加入購物車">
+                            <span class="material-symbols-outlined cart_icon">
+                                add_shopping_cart
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn">
+
+                        <abbr title="直接購買">
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </abbr>
+
+                    </span>
+                </div>
+                <div class="on_stock">
+                    現有庫存:
+                    <span id="on_stock_number"> </span>
+                </div>
+            </form>
+
+
+        </div>
+
+        <div class="goods_item" id="good_item_5">
+
+
+            <div class="goods_content">
+                <img src="登山鞋4.jpg" alt="" class="goods_img" id="goods_img_5">
+
+                <div class="goods_discribe">
+
+                    <span class="goods_title" id="goods_title_5">MtOP第四代</span>
+                    <p class="goods_text" id="goods_text_5">攀登高峰，MtOP登山鞋助你一臂之力！防水、輕便、橡膠纖維鞋底，專業採用！</p>
+                </div>
+
+                <div class="icon_wrap">
+                    <span class="material-symbols-outlined icon_btn">
+                        keyboard_double_arrow_left
+                    </span>
+                </div>
+
+                <div class="title_wrap">
+                    <h3>MtOP第四代</h3>
+                </div>
+            </div>
+
+
+            <form class="goods_utility" id="goods_utility_5">
+
+                <img src="登山鞋連結4.jpg" alt="">
+
+                <div class="goods_option">
+
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                </div>
+
+                <div class="goods_prics">
+
+                    <span id="goods_input_price_5" class="goods_input_price">2999</span>$
+                </div>
+                <div class="goods_qountity">
+                    <label for="goods_input_number_5">數量</label>
+                    <input type="number" min="1" id="goods_input_number_5" class="goods_input_number" value="1">
+                </div>
+
+
+                <div class="goods_actions">
+                    <span class="function_btn heart_icons">
+
+                        <abbr title="收藏">
+                            <span class="material-symbols-outlined heart_btn">
+                                favorite
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn function_btn_cart">
+
+                        <abbr title="加入購物車">
+                            <span class="material-symbols-outlined cart_icon">
+                                add_shopping_cart
+                            </span></abbr>
+
+                    </span>
+                    <spans="function_btn">
+
+                        <abbr title="直接購買">
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </abbr>
+
+                        </spans=>
+                </div>
+                <div class="on_stock">
+                    現有庫存:
+                    <span id="on_stock_number"> </span>
+                </div>
+            </form>
+
+
+        </div>
+
+        <div class="goods_item" id="good_item_6">
+
+
+            <div class="goods_content">
+                <img src="登山鞋連結2.jpg" alt="" class="goods_img" id="goods_img_6">
+
+                <div class="goods_discribe">
+
+                    <span class="goods_title" id="goods_title_6">MtOP第四代</span>
+                    <p class="goods_text" id="goods_text_6">攀登高峰，MtOP登山鞋助你一臂之力！防水、輕便、橡膠纖維鞋底，專業採用！</p>
+                </div>
+
+                <div class="icon_wrap">
+                    <span class="material-symbols-outlined icon_btn">
+                        keyboard_double_arrow_left
+                    </span>
+                </div>
+
+                <div class="title_wrap">
+                    <h3>MtOP第四代</h3>
+                </div>
+            </div>
+
+
+            <form class="goods_utility" id="goods_utility_6">
+
+                <img src="登山鞋連結4.jpg" alt="">
+
+                <div class="goods_option">
+
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                    <button class="color_btn"></button>
+                </div>
+
+                <div class="goods_prics">
+
+                    <span id="goods_input_price_6" class="goods_input_price">2999</span>$
+                </div>
+                <div class="goods_qountity">
+                    <label for="goods_input_number_6">數量</label>
+                    <input type="number" min="1" id="goods_input_number_6" class="goods_input_number" value="1">
+                </div>
+
+
+                <div class="goods_actions">
+                    <span class="function_btn heart_icons">
+
+                        <abbr title="收藏">
+                            <span class="material-symbols-outlined heart_btn">
+                                favorite
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn function_btn_cart">
+
+                        <abbr title="加入購物車">
+                            <span class="material-symbols-outlined cart_icon">
+                                add_shopping_cart
+                            </span></abbr>
+
+                    </span>
+                    <span class="function_btn">
+
+                        <abbr title="直接購買">
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </abbr>
+
+                    </span>
+                </div>
+                <div class="on_stock">
+                    現有庫存:
+                    <span id="on_stock_number"> </span>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+
+    <!-- 設定頁尾 -->
+
+
+    <div class="footer">
+
+        <div class="footer-item">
+            <h4>關於本公司</h4>
+            <nav>
+                <a href="#" class="footer_tag" id="footer_tag_1">
+                    <p>公司背景</p>
+
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_2">
+                    <p>聯絡我們</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_3">
+                    <p>隱私權政策</p>
+                </a>
+            </nav>
+        </div>
+        <div class="footer-item">
+            <h4>各項服務</h4>
+            <nav>
+                <a href="#" class="footer_tag" id="footer_tag_4">
+                    <p>登山用品</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_5">
+                    <p>露營用品</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_6">
+                    <p>其他服務</p>
+                </a>
+
+            </nav>
+        </div>
+        <div class="footer-item">
+            <h4>門市據點</h4>
+            <nav>
+
+                <a href="#" class="footer_tag" id="footer_tag_7">
+                    <p>台北</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_8">
+                    <p>台中</p>
+                </a>
+                <a href="#" class="footer_tag" id="footer_tag_9">
+                    <p>高雄</p>
+                </a>
+            </nav>
+        </div>
+        <div class="footer-item footer-subs">
+            <h4>訂閱最新消息</h4>
+            <form class="subscribe">
+                <input type="email" class="input_email" required placeholder="請輸入電子郵件">
+                <button class="submit_btn" data-replace="訂閱">訂閱</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./登山購物頁面-購物.js"></script>
+</body>
+
+</html>
